@@ -1,0 +1,143 @@
+:root{
+  --bg: #0f1724;
+  --panel: #0b1220;
+  --muted: #98a0b3;
+  --accent: #7c5cff;
+  --accent-2: #00d1ff;
+  --success: #2ecc71;
+  --danger: #ff6b6b;
+  --glass: rgba(255,255,255,0.04);
+  --radius: 12px;
+  --max-width: 1200px;
+  color-scheme: dark;
+}
+
+*{box-sizing:border-box}
+html,body,#__next{height:100%}
+body{
+  margin:0;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  background: radial-gradient(1200px 600px at 10% 10%, rgba(124,92,255,0.08), transparent), linear-gradient(180deg, #071025 0%, #05070b 100%);
+  color: #e6eef8;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  line-height:1.35;
+}
+
+/* layout */
+.app-shell{
+  max-width: var(--max-width);
+  margin: 0 auto;
+  height:100%;
+  display:flex;
+  gap:16px;
+  padding:16px;
+}
+
+/* left sidebar */
+.sidebar{
+  width: 260px;
+  min-width: 180px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.02));
+  border-radius: var(--radius);
+  padding:12px;
+  border: 1px solid rgba(255,255,255,0.03);
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+  backdrop-filter: blur(6px);
+}
+
+/* rooms list */
+.rooms-list{ display:flex; flex-direction:column; gap:8px; }
+.room-btn{
+  display:flex; align-items:center; gap:8px;
+  padding:10px; border-radius:10px; cursor:pointer;
+  background: transparent; color:var(--muted); border:none; text-align:left;
+}
+.room-btn.active{
+  background: linear-gradient(90deg, rgba(124,92,255,0.12), rgba(0,209,255,0.04));
+  color:var(--accent-2);
+  font-weight:600;
+  box-shadow: 0 6px 20px rgba(12,16,40,0.35);
+}
+
+/* main panel */
+.main{
+  flex:1; display:flex; flex-direction:column; gap:12px;
+  min-width: 0;
+}
+.header{
+  display:flex; align-items:center; justify-content:space-between;
+  padding:12px; border-radius:12px; background:var(--panel); border:1px solid rgba(255,255,255,0.02);
+}
+.header .title{ font-size:18px; font-weight:700; display:flex; gap:8px; align-items:center; }
+
+/* messages area */
+.messages{
+  flex:1; overflow:auto; padding:12px; border-radius:12px; background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(0,0,0,0.02));
+  border: 1px solid rgba(255,255,255,0.02);
+}
+.msg{
+  display:flex; gap:12px; align-items:flex-start; margin-bottom:12px;
+}
+.msg .avatar{
+  width:40px; height:40px; border-radius:10px; background:linear-gradient(135deg,var(--accent),var(--accent-2));
+  display:flex; align-items:center; justify-content:center; font-weight:700; color:#fff; flex-shrink:0;
+}
+.msg .body{ flex:1; display:flex; flex-direction:column; gap:6px; }
+.msg .meta{ display:flex; gap:8px; color:var(--muted); font-size:12px; align-items:center; }
+.msg .bubble{
+  background:var(--glass); padding:10px 12px; border-radius:10px; border:1px solid rgba(255,255,255,0.02);
+  word-break: break-word;
+}
+
+/* input area */
+.composer{
+  display:flex; gap:8px; align-items:center; padding:12px; border-radius:12px; background:var(--panel); border:1px solid rgba(255,255,255,0.02);
+}
+.composer textarea{
+  flex:1; min-height:44px; max-height:160px; resize:none; padding:10px; background:transparent; color:inherit; border:none; outline:none;
+}
+
+/* PM panel (top-right) */
+.pm-panel{
+  position:fixed; top:16px; right:16px; width:360px; max-height:78vh; background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.03)); border-radius:12px;
+  border:1px solid rgba(255,255,255,0.03); box-shadow: 0 8px 30px rgba(8,10,20,0.6); overflow:hidden; display:flex; flex-direction:column; transition: all .22s ease;
+}
+.pm-panel.full{
+  width: calc(100vw - 32px); height: calc(100vh - 32px); left:16px; right:16px; top:16px; bottom:16px; max-height:none; z-index:1200;
+}
+
+/* pm header */
+.pm-header{ display:flex; align-items:center; justify-content:space-between; padding:10px 12px; border-bottom:1px solid rgba(255,255,255,0.02); }
+.pm-messages{ padding:12px; overflow:auto; display:flex; flex-direction:column; gap:8px; }
+
+/* user menu / contextual popup */
+.user-menu{
+  background:var(--panel); border-radius:10px; padding:8px; border:1px solid rgba(255,255,255,0.03);
+  display:flex; flex-direction:column; gap:6px; min-width:200px;
+}
+.user-menu button{ background:transparent; border:none; color:var(--muted); padding:8px; text-align:left; border-radius:8px; cursor:pointer; }
+.user-menu button:hover{ color:var(--accent-2); background:rgba(255,255,255,0.02); }
+
+/* admin panel */
+.admin-card{ padding:12px; border-radius:12px; background:linear-gradient(90deg, rgba(124,92,255,0.06), rgba(0,209,255,0.02)); border:1px solid rgba(255,255,255,0.03); }
+.admin-actions{ display:flex; gap:8px; flex-wrap:wrap; }
+
+/* owner broadcast form */
+.broadcast-form input, .broadcast-form textarea, .broadcast-form button{ width:100%; padding:10px; border-radius:8px; border:none; outline:none; }
+.broadcast-form .row{ display:flex; gap:8px; }
+.small{ font-size:12px; color:var(--muted) }
+
+/* users drawer */
+.users-drawer{
+  position:fixed; left:16px; bottom:16px; width:320px; max-height:60vh; background:var(--panel); border-radius:12px; padding:10px; border:1px solid rgba(255,255,255,0.03); overflow:auto;
+}
+
+/* responsive */
+@media (max-width:900px){
+  .sidebar{ display:none; }
+  .app-shell{ padding:10px; gap:8px; }
+  .pm-panel{ width:300px; right:10px; top:10px; }
+}
